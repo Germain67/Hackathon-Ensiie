@@ -75,4 +75,10 @@ public class InfluenceCell
     {
         return unitsCount;
     }
+
+    public String toString() {
+        return "pos : { x=" + this.x + "; y=" + this.y + "\n"
+        + "owner: " + this.owner + "\n"
+        + "count: " + this.unitsCount + "\n";
+    }
 }

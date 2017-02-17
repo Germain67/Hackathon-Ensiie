@@ -2,20 +2,21 @@ import client.InfluenceCell;
 import client.InfluenceClient;
 import client.InfluenceField;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Created by brice on 08/02/17.
  */
-public class Program
+public class IA_Germain
 {
     public static void main(String[] args)
     {
         Random r = new Random();
         InfluenceClient client = InfluenceClient.getInstance();
 
-        client.connect("127.0.0.1", "RandomNul");
+        client.connect("127.0.0.1", "HTAG");
 
         while (client.getStatus() == InfluenceClient.Status.ONGOING)
         {
@@ -25,8 +26,6 @@ public class Program
                 break;
             }
 
-
-			// Edit from here
             ArrayList<InfluenceCell> myCells;
             client.printLog("Attacking");
             for (int i = 0; i < 10; i++)
@@ -48,23 +47,15 @@ public class Program
                 }
             }
 
-            //PAS TOUCHE
             int unitsToAdd = client.endAttacks();
-            //PAS TOUCHE
 
-            myCells = client.getMyCells();
+            //Boost frontline
             for (int i = 0; i < unitsToAdd; i++)
             {
-                InfluenceCell c = myCells.get(r.nextInt(myCells.size()));
+                InfluenceCell c = field.getWeakestFrontLine();
                 client.addUnits(c, 1);
             }
-
-
-            //PAS TOUCHE
             client.endAddingUnits();
-            //PAS TOUCHE
-
-            //end here
         }
 
         switch (client.getStatus())
@@ -87,3 +78,4 @@ public class Program
         }
     }
 }
+
