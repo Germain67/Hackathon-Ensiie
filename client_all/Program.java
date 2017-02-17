@@ -47,10 +47,10 @@ public class Program
                     }
                 }
             }
-			// End here
 
-
+            //PAS TOUCHE
             int unitsToAdd = client.endAttacks();
+            //PAS TOUCHE
 
             myCells = client.getMyCells();
             for (int i = 0; i < unitsToAdd; i++)
@@ -58,7 +58,13 @@ public class Program
                 InfluenceCell c = myCells.get(r.nextInt(myCells.size()));
                 client.addUnits(c, 1);
             }
+
+
+            //PAS TOUCHE
             client.endAddingUnits();
+            //PAS TOUCHE
+
+            //end here
         }
 
         switch (client.getStatus())
