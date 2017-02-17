@@ -76,4 +76,25 @@ public class InfluenceField
         }
         return cell;
     }
+
+    public ArrayList<InfluenceCell> getFrontLine(){
+        ArrayList<InfluenceCell> frontLine = new ArrayList<InfluenceCell>();
+        //TODO: FrontLine
+        return frontLine;
+    }
+
+    public InfluenceCell getWeakestFrontLine(){
+        ArrayList<InfluenceCell> frontline = getFrontLine();
+        InfluenceCell weakeast = frontline.get(0);
+        int min = weakeast.getUnitsCount();
+        for(int i = 1; i < frontline.size(); i++)
+        {
+            if(frontline.get(i).getUnitsCount() < min)
+            {
+                weakeast = frontline.get(i);
+                min = weakeast.getUnitsCount();
+            }
+        }
+        return weakeast;
+    }
 }

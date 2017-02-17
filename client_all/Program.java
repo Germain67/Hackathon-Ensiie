@@ -15,7 +15,7 @@ public class Program
         Random r = new Random();
         InfluenceClient client = InfluenceClient.getInstance();
 
-        client.connect("127.0.0.1", "JavaClient");
+        client.connect("127.0.0.1", "RandomNul");
 
         while (client.getStatus() == InfluenceClient.Status.ONGOING)
         {
