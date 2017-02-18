@@ -76,6 +76,11 @@ public class InfluenceCell
         return unitsCount;
     }
 
+    public void incrementUnitCount()
+    {
+        this.unitsCount += 1;
+    }
+
     public String toString() {
         return "pos : { x=" + this.x + "; y=" + this.y + "\n"
         + "owner: " + this.owner + "\n"

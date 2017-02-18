@@ -28,7 +28,7 @@ public class IA_Germain
 
             ArrayList<InfluenceCell> myCells;
             client.printLog("Attacking");
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 999; i++)
             {
                 myCells = client.getMyCells();
                 InfluenceCell c = myCells.get(r.nextInt(myCells.size()));
@@ -50,10 +50,13 @@ public class IA_Germain
             int unitsToAdd = client.endAttacks();
 
             //Boost frontline
+            myCells = client.getMyCells();
             for (int i = 0; i < unitsToAdd; i++)
             {
-                InfluenceCell c = field.getWeakestFrontLine();
+                InfluenceCell c = field.getWeakestFrontLine(myCells, field);
                 client.addUnits(c, 1);
+                c.incrementUnitCount();
+                field.setCell(c.getX(), c.getY(), c);
             }
             client.endAddingUnits();
         }
