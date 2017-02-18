@@ -3,6 +3,7 @@ import client.InfluenceClient;
 import client.InfluenceField;
 
 import java.awt.*;
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,7 +17,8 @@ public class IA_Germain
         Random r = new Random();
         InfluenceClient client = InfluenceClient.getInstance();
 
-        client.connect("127.0.0.1", "HTAG");
+        client.connect("10.3.1.160", "[HT@G] G3rm41n67"); //arno
+        //client.connect("10.3.6.227", "[HT@G] G3rm41n67"); //hans
 
         while (client.getStatus() == InfluenceClient.Status.ONGOING)
         {
@@ -28,11 +30,12 @@ public class IA_Germain
 
             ArrayList<InfluenceCell> myCells;
             client.printLog("Attacking");
-            for (int i = 0; i < 999; i++)
+            for (int i = 0; i < 99999; i++)
             {
                 myCells = client.getMyCells();
-                InfluenceCell c = myCells.get(r.nextInt(myCells.size()));
-                if (c.getUnitsCount() >= 2)
+                InfluenceCell c =  myCells.get(r.nextInt(myCells.size()));
+                int val = c.getUnitsCount();
+                if (val >= 2)
                 {
                     int dx = c.getX() + r.nextInt(3) - 1;
                     int dy = c.getY() + r.nextInt(3) - 1;
@@ -53,7 +56,9 @@ public class IA_Germain
             myCells = client.getMyCells();
             for (int i = 0; i < unitsToAdd; i++)
             {
-                InfluenceCell c = field.getWeakestFrontLine(myCells, field);
+                ArrayList<InfluenceCell> field_lows = field.getLows(myCells);
+                InfluenceCell c;
+                c = field.getWeakestFrontLine(myCells, client);
                 client.addUnits(c, 1);
                 c.incrementUnitCount();
                 field.setCell(c.getX(), c.getY(), c);

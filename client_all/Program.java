@@ -29,7 +29,7 @@ public class Program
 			// Edit from here
             ArrayList<InfluenceCell> myCells;
             client.printLog("Attacking");
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 99; i++)
             {
                 myCells = client.getMyCells();
                 InfluenceCell c = myCells.get(r.nextInt(myCells.size()));
