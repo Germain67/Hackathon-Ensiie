@@ -19,6 +19,7 @@ public class IA_Germain
 
         client.connect("10.3.1.160", "[HT@G] G3rm41n67"); //arno
         //client.connect("10.3.6.227", "[HT@G] G3rm41n67"); //hans
+        //client.connect("10.3.4.49", "[HT@G] G3rm41n67"); //hans
 
         while (client.getStatus() == InfluenceClient.Status.ONGOING)
         {
