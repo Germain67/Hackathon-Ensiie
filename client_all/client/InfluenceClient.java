@@ -395,6 +395,19 @@ public class InfluenceClient
         return res;
     }
 
+    public ArrayList<InfluenceCell> getEnnemyCells()
+    {
+        ArrayList<InfluenceCell> res = new ArrayList<>();
+        for (InfluenceCell c : this.field.getCells())
+        {
+            if (c.getOwner() != this.number && 0 != c.getOwner())
+            {
+                res.add(c);
+            }
+        }
+        return res;
+    }
+
     /**
      * Permet de compter le nombre de cellules possédées par les adversaires
      * @return Le nombre total de cellules possédées par les adversaires
