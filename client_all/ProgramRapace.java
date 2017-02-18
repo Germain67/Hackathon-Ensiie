@@ -42,17 +42,19 @@ public class ProgramRapace {
                 myCells = client.getMyCells();
                 for (InfluenceCell c : myCells) {
                     if(c.getUnitsCount() >= 2) {
-                        for (int i = -1; i <= 1 && ok; i++) {
+                        for (int i = 1; i >= -1 && ok; i--) {
                             for (int j = -1; j <= 1 && ok; j++) {
                                 if (i != j) {
                                     int dx = c.getX() + i;
-                                    int dy = c.getY() + j;
+                                    int dy = c.getY() - j;
                                     if (dx >= 0 && dx < field.getWidth() && dy >= 0 && dy < field.getHeight()) {
                                         InfluenceCell cellToAttack = field.getCell(dx, dy);
                                         if (cellToAttack != null && cellToAttack.getOwner() == 0) {
                                             field = client.attack(c.getX(), c.getY(), cellToAttack.getX(), cellToAttack.getY());
                                             ok = false;
                                             attLeft--;
+                                            cellsToUpgrade.add(cellToAttack);
+                                            cellsToUpgrade.add(c);
                                         }
                                     }
                                 }
@@ -63,11 +65,11 @@ public class ProgramRapace {
                 if (ok) {
                     for (InfluenceCell c : myCells) {
                         if(c.getUnitsCount() >= 2) {
-                            for (int i = -1; i <= 1 && ok; i++) {
+                            for (int i = 1; i >= -1 && ok; i--) {
                                 for (int j = -1; j <= 1 && ok; j++) {
                                     if (i != j) {
                                         int dx = c.getX() + i;
-                                        int dy = c.getY() + j;
+                                        int dy = c.getY() - j;
                                         if (dx >= 0 && dx < field.getWidth() && dy >= 0 && dy < field.getHeight()) {
                                             InfluenceCell cellToAttack = field.getCell(dx, dy);
                                             if (cellToAttack != null && cellToAttack.getOwner() != client.getNumber()) {
@@ -75,6 +77,8 @@ public class ProgramRapace {
                                                     field = client.attack(c.getX(), c.getY(), cellToAttack.getX(), cellToAttack.getY());
                                                     ok = false;
                                                     attLeft--;
+                                                    cellsToUpgrade.add(cellToAttack);
+                                                    cellsToUpgrade.add(c);
                                                 }
                                             }
                                         }
@@ -93,7 +97,7 @@ public class ProgramRapace {
             int unitsToAdd = client.endAttacks();
             //PAS TOUCHE
 
-            ok = true;
+            /*ok = true;
             myCells = client.getMyCells();
             for(InfluenceCell c : myCells){
                 for (int i = -1; i <= 1 && ok; i++) {
@@ -111,7 +115,7 @@ public class ProgramRapace {
                         }
                     }
                 }
-            }
+            }*/
 
             if(myCells.size() == 1){
                 InfluenceCell c = myCells.get(0);
