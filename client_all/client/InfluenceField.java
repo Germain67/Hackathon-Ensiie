@@ -77,21 +77,26 @@ public class InfluenceField
         return cell;
     }
 
-    public ArrayList<InfluenceCell> getFrontLine(){
-        ArrayList<InfluenceCell> frontLine = new ArrayList<InfluenceCell>();
-        //TODO: FrontLine
+    public void setCell(int x, int y, InfluenceCell c)
+    {
+        this.cells.set(y * width + x, c);
+    }
+
+    public ArrayList<InfluenceCell> getFrontLine(ArrayList<InfluenceCell> myCells){
+        ArrayList<InfluenceCell> frontLine = myCells;
         return frontLine;
     }
 
-    public InfluenceCell getWeakestFrontLine(){
-        ArrayList<InfluenceCell> frontline = getFrontLine();
-        InfluenceCell weakeast = frontline.get(0);
+    public InfluenceCell getWeakestFrontLine(ArrayList<InfluenceCell> myCells, InfluenceField field){
+        ArrayList<InfluenceCell> frontline = getFrontLine(myCells);
+        InfluenceCell weakeast = field.getCell(frontline.get(0).getX(), frontline.get(0).getY());
         int min = weakeast.getUnitsCount();
         for(int i = 1; i < frontline.size(); i++)
         {
-            if(frontline.get(i).getUnitsCount() < min)
+            InfluenceCell c = field.getCell(frontline.get(i).getX(), frontline.get(i).getY());
+            if(c.getUnitsCount() < min)
             {
-                weakeast = frontline.get(i);
+                weakeast = c;
                 min = weakeast.getUnitsCount();
             }
         }
